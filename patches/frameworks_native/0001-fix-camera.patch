@@ -1,0 +1,28 @@
+From eb123b02b1490e9afbb5bb399038df9b0bf19173 Mon Sep 17 00:00:00 2001
+From: sbwml <984419930@qq.com>
+Date: Wed, 10 Nov 2021 13:30:10 +0800
+Subject: [PATCH] fix camera
+
+---
+ libs/binder/Parcel.cpp | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/libs/binder/Parcel.cpp b/libs/binder/Parcel.cpp
+index ee834ea..2b6595c 100644
+--- a/libs/binder/Parcel.cpp
++++ b/libs/binder/Parcel.cpp
+@@ -592,11 +592,7 @@ void Parcel::updateWorkSourceRequestHeaderPosition() const {
+     }
+ }
+ 
+-#if defined(__ANDROID_VNDK__)
+-constexpr int32_t kHeader = B_PACK_CHARS('V', 'N', 'D', 'R');
+-#else
+ constexpr int32_t kHeader = B_PACK_CHARS('S', 'Y', 'S', 'T');
+-#endif
+ 
+ // Write RPC headers.  (previously just the interface token)
+ status_t Parcel::writeInterfaceToken(const String16& interface)
+-- 
+2.15.0
+
